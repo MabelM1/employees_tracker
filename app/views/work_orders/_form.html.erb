@@ -1,0 +1,23 @@
+<%= form_for([@user,@work_order]) do |f| %>
+    <ul> 
+       <%if flash[:error]%>
+            <%  flash[:error].each do |message| %>
+               <li><%= message %></li>
+            <% end %>
+        <% end %>
+    </ul>
+      
+    <%= f.label :employee %>
+    <%= f.collection_select :employee, @user.employees, :id, :name %> <br>
+    
+    <%= f.label :building %>
+    <%= f.collection_select :building, @user.buildings, :id, :address %><br>
+    
+    <%= f.label :date %>
+    <%= f.date_field :date %> <br>
+
+    <%= f.label :task %>
+    <%= f.text_area :task %> <br>
+    
+    <%= f.submit %>
+<% end %>

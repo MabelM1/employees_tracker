@@ -1,0 +1,11 @@
+<h3> Punching </h3>
+
+<%= form_tag ({controller: 'pay_roles', action: 'create', method: 'post'}) do %>         
+
+  <input type="hidden" id="custId" name="punch[punch_in]" value="<%=Time.now.ctime%>">
+  <input type=submit value="PUNCH IN">
+ 
+
+<% end %> 
+
+

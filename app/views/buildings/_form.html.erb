@@ -1,0 +1,23 @@
+<%= form_for  ([@user, @building] )  do |f| %>
+
+    <% if flash[:error] != nil %>
+        <div id="error_explanation">
+            <h2>There were some errors:</h2>
+            <ul>
+                <% flash[:error].each do |message| %>
+                    <li><%= message %></li>
+                <% end %>
+            </ul>
+        </div>
+    <% end %>
+    <%= f.label :address %>
+    <%= f.text_field :address %><br>
+
+    <%= f.label :super_name %>
+    <%= f.text_field :super_name %><br>
+
+    <%= f.label :phone_number %>
+    <%= f.text_field :phone_number %><br>
+
+    <%= f.submit %>
+<% end %>

@@ -1,0 +1,20 @@
+
+ 
+
+<h2> <%= @user.company_name %> </h2><br>
+<%= link_to('Employees', user_employees_path(@user)) %> <br>
+<%= link_to('Buildings', user_buildings_path(@user))%> <br>
+<%= link_to('Work Orders', user_work_orders_path(@user)) %> <br>
+<%= link_to('Edit profile', edit_user_path(@user))%>
+
+
+
+<% if @user %>
+<footer id="footer" >
+    <p> Jobs</p>
+    <p> Licence number: <%=@user.licence_number %> </p>
+    <p> Email: <%=@user.email %> </p>
+    <p> Contact us: <%=@user.phone_number %> </p>
+    <p> About us: <%=@user.about_us %> </p>
+</footer>
+<% end %>

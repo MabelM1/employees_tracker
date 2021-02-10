@@ -1,0 +1,45 @@
+
+<br> <br>
+<% if session[:employee_id] %>
+ <img src="<%= @employee.image %>">
+  <p> Welcome <%= @employee.name%> </p>
+  <p>Email: <%= @employee.email %></p>  
+<% else %>
+  <%= link_to('Log in with Facebook!', '/auth/facebook') %>
+<% end %>
+
+<%= link_to("Edit Profile", edit_user_employee_path(@user,@employee)) %> <br>
+
+<%= link_to("Coworkers", user_employees_path(@user)) %> <br>
+
+   <%=link_to "Punsh" , user_employee_pay_roles_path(@employee.user,@employee)%>
+
+<p> Work orders </p>
+<div>
+<ul>
+    <% @employee.work_orders.each do |work_order| %>
+       <li> <%= link_to(work_order.date_format , user_work_order_path(@user,work_order))%></li> <br>
+    <% end %>
+</ul>
+</div>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

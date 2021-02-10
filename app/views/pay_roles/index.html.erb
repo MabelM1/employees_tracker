@@ -1,0 +1,25 @@
+
+<br> <br>
+<% if !@pay_roles.empty? %>
+    <%if session[:employee_id]%>
+        <% if !@employee.pay_roles.last.punch_out%>
+           <h3> <%=link_to "Punsh" , edit_user_employee_pay_role_path(@employee.user,@employee,PayRole.find(@employee.pay_roles.last.id))%> </h3>
+        <% else %>
+        <h3> <%=link_to "Punsh" , new_user_employee_pay_role_path(@employee.user,@employee)%> </h3>
+        <% end %>
+    <% end %>
+<% else %>
+    <h3> <%=link_to "Punsh" , new_user_employee_pay_role_path(@employee.user,@employee)%> </h3>
+<% end %>
+
+
+<% @pay_roles.each do |punch| %>
+
+    <div>
+        <p> <%=link_to punch.punch_in_date , user_employee_pay_role_path(punch.employee.user,punch.employee, punch)%> </p>
+    <div>
+  
+<% end %>
+
+
+

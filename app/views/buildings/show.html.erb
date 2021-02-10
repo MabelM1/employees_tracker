@@ -1,0 +1,8 @@
+<div>
+<%if session[:user_id]%>
+   <p> <%=link_to "edit", edit_user_building_path(@building.user,@building) %>
+<%end%>
+</div>
+<p> Building Address: <%= @building.address%></p> <br>
+<p> Super: <%= @building.super_name%> </p> <br>
+<p> Phone Number: <%= @building.phone_number%> </p>

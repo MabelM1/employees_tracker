@@ -1,0 +1,13 @@
+
+<h3> <%= @pay_role.employee.name%> </h3>
+<p> Punch In: <%= @pay_role.punch_in_date %> </p>
+<% if @pay_role.punch_out%>
+  <p> Punch Out: <%= @pay_role.punch_out_date %> </p>
+<% end %>
+<p> Hours Worked: <%= "#{@pay_role.worked_hours}"%> </p>
+
+<%if session[:user_id].to_s == @pay_role.employee.user.id.to_s %>
+    <%= form_tag(edit_user_employee_pay_role_path(@pay_role.employee.user,@pay_role.employee,@pay_role), method: 'get') do %>          
+        <input type=submit value="Edit">
+    <% end %> 
+<% end %>

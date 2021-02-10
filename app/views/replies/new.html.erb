@@ -1,0 +1,10 @@
+<h3> <%=@comment.comment%></h3>
+
+<%= form_tag ({controller: 'replies', action: 'create', method: 'post'}) do %>
+           
+    <input type="hidden" id="custId" name="comment_id" value="<%=@comment.id%>">
+
+    <label>Reply:</label>
+<textarea id="post" name="reply[reply]" >  </textarea>
+<input type=submit value="Reply">
+<% end %> 

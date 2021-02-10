@@ -1,0 +1,6 @@
+<%= link_to('Create Building',new_user_building_path)%> 
+<ul>
+<% @user.buildings.each do |building| %>
+  <li> <%= link_to(building.address, user_building_path(@user,building))%></li> <br>
+<% end %>
+</ul>

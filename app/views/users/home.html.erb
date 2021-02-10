@@ -1,0 +1,23 @@
+<nav> 
+    <%= link_to('Sign Up', '/users/new') %>
+    <%= link_to('Sign In', '/sessions/new') %>
+</nav>
+
+
+
+
+
+<% if @user %>
+<footer id="footer" >
+    <p> Jobs</p>
+    <p> Licence number: <%=@user.licence_number %> </p>
+    <p> Email: <%=@user.email %> </p>
+    <p> Contact us: <%=@user.phone_number %> </p>
+    <p> About us: <%=@user.about_us %> </p>
+</footer>
+<% end %>
+
+
+
+
+

@@ -1,0 +1,104 @@
+<%if session[:user_id]%>
+   <p> <%=link_to "Edit", edit_user_work_order_path(@work_order.employee.user,@work_order) %>
+<%end%>
+
+<h1> <%=@work_order.user.company_name %> </h1>
+<h3>Date: <%=@work_order.date_format%> </h3> 
+<h3> Assign to: <%=@work_order.employee.name %> </h3>
+<address>Building address: <%=@work_order.building.address %> </address>
+<p> Super: <%= @work_order.building.super_name %> </p>
+<p> Super phone number: <%=@work_order.building.phone_number %> </p>
+
+<div>
+    <h2> Tasks </h2>
+    <ol> 
+       <% @work_order.tasks.each do |task| %>   
+          <li> <%=task%> </li>  
+        <% end %>
+    </ol>
+</div>
+<br> 
+
+
+
+
+
+<%= form_tag "#{@work_order.id}/close", method: 'get' do %>
+<% if @work_order.status %>
+    <input type="hidden" id="custId" name="work_order" value="false">
+    <label> Work Order status: <%="Closed"%>  </label><br>
+    <input type=submit value="OPEN WORK ORDER">
+<%else%>        
+    <input type="hidden" id="custId" name="work_order_status" value="true">
+    <label> Work Order status: <%="Open"%> </label> <br>
+    <input type=submit value="CLOSE WORK ORDER">
+<%end%>
+
+  <% end %> 
+  <br> <br>
+
+
+
+
+
+
+
+
+<div>
+   <%= form_tag ({controller: 'comments', action: 'create', method: 'post'}) do %>
+       <input type="hidden" name="work_order_id" value="<%=@work_order.id%>"
+       
+       <label>Subject</lable>
+       <input type="text" name="comment[subject]">
+
+        <br><br>
+        <label>Comment:</label>
+   
+        <textarea id="post" name="comment[comment]"> </textarea>
+
+        <br><br>
+        <input type="submit" value="Submit">
+    <% end %> 
+</div>
+
+   
+        <% @work_order.comments.each do |comment| %>
+            <ul>
+            <% if comment.employee %>
+              <%=link_to comment.employee.name , user_employee_path(comment.employee.user,comment.employee) %>
+            <% elsif comment.user %>
+              <%=link_to @work_order.user.company_name , user_path(comment.user) %>
+            <% end %>
+
+            <%= "posted at: #{comment.date}" %> <br>
+            <h3> <%= comment.subject  %> </h3> 
+            <p>_______________________________________________________</p>
+           <li> <%= comment.comment %> </li><br>
+            
+            <div>
+             
+             <ul>
+                <% comment.replies.each do |reply| %>
+                    <% if reply.employee %>
+                       <p> <%=link_to reply.employee.name , user_employee_path(@work_order.employee.user,reply.employee) %> Reply: <%= reply.date %>  </p> 
+                    <%elsif reply.user%>
+                       <p> <%=link_to reply.user.company_name , user_path(reply.user) %> Reply: <%= reply.date %>  </p> 
+                    <%end%>
+                       <li> <%= reply.reply %> </li><br>
+                <% end %>
+                <%=link_to "Reply",new_comment_reply_path(comment) %>
+             </ul>
+             
+                <br>
+                
+            </div>
+            </ul>
+<br> <br>
+        <% end %>
+    
+   
+
+
+
+
+

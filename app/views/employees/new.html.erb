@@ -1,0 +1,33 @@
+<h1>  Create an employee account </h1>   
+<%= form_for  ([@user, @employee] )  do |f| %>
+
+    <% if flash[:error] != nil %>
+        <div id="error_explanation">
+            <h2>There were some errors:</h2>
+            <ul>
+                <% flash[:error].each do |message| %>
+                    <li><%= message %></li>
+                <% end %>
+            </ul>
+        </div>
+    <% end %>
+    <%= f.label :name %>
+    <%= f.text_field :name %><br>
+
+    <%= f.label :email %>
+    <%= f.text_field :email %><br>
+
+    <%= f.label :date_of_birth %>
+    <%= f.text_field :date_of_birth %><br>
+
+    <%= f.label :password %>
+    <%= f.password_field :password%><br>
+
+    <%=f.label :password %>
+    <%= f.password_field  :password_confirmation%><br>
+
+
+
+    <%= f.submit %>
+<% end %>
+

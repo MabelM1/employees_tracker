@@ -1,0 +1,28 @@
+
+<% if !@pay_role.punch_out && !session[:user_id]%>
+    <%= form_tag(user_employee_pay_role_path(@user,@employee,@pay_role), method: 'PATCH') do %>         
+        <input type="hidden" id="punch_out" name="punch[punch_out]" value="<%=Time.now.ctime%>">
+        <input type=submit value="PUNCH OUT">
+    <% end %>  
+
+<% else %> 
+<h3> <%= @pay_role.employee.name %></h3>
+    <%= form_tag(user_employee_pay_role_path(@user,@employee,@pay_role), method: 'PATCH') do %> 
+        <p> <%= @pay_role.punch_in_date %> </p> 
+        <label> Punch in:</label> 
+        <input type="date" name="punch[punch_in_date]" >
+        <input type="time" name="punch[punch_in_time]">
+        <input type=submit value="Save change">
+    <% end %>
+<br> <br>
+    <%= form_tag(user_employee_pay_role_path(@user,@employee,@pay_role), method: 'PATCH') do %> 
+        <p> <%= @pay_role.punch_out_date %> </p> 
+        <label> Punch out:</label>
+        <input type="date" name="punch[punch_out_date]" >
+        <input type="time" name="punch[punch_out_time]" >
+        <input type=submit value="Save change">
+    <% end %>
+    <h1> Hours Worked: <%= "#{@pay_role.worked_hours}"%> </h1>
+<% end %>
+
+

@@ -1,0 +1,19 @@
+<%= link_to('Create new work order',new_user_work_order_path)%> 
+
+<h3>Close work orders </h3>
+<ul> 
+  <% @work_orders.each do |work_order| %>
+    <% if work_order.status %>
+      <li> <%= link_to("#{work_order.date_format}: #{work_order.employee.name}", user_work_order_path(work_order.user,work_order))%></li> <br>   
+    <% end %>
+  <% end %>
+</ul>
+
+  <h3> Open work order </h3>
+  <ul>
+    <% @work_orders.each do |work_order| %>
+        <% if !work_order.status %>
+          <li> <%= link_to("#{work_order.date_format}: #{work_order.employee.name}", user_work_order_path(work_order.user,work_order))%></li> <br>
+        <% end %>
+    <% end %>
+  </ul>

@@ -1,0 +1,10 @@
+
+<% if session[:user_id] %>
+  <%= link_to('Create Employee',new_user_employee_path)%> 
+<% end %>
+
+<ul>
+<% @employees.each do |employee| %>
+  <li> <%= link_to(employee.name, user_employee_path(employee.user,employee))%></li> <br>
+<% end %>
+</ul>
