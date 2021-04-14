@@ -1,10 +1,13 @@
-<nav> 
-    <%= link_to('Sign Up', '/users/new') %>
-    <%= link_to('Sign In', '/sessions/new') %>
+<nav class="navbar navbar-light bg-light">
+  <div class="container-fluid">
+    <span class="navbar-brand mb-0 h1">Employee Tracker</span>
+  </div>
 </nav>
 
-
-
+<nav> 
+   <%= link_to('Sign Up', '/users/new') %>
+    <%= link_to('Sign In', '/sessions/new') %>
+</nav>
 
 
 <% if @user %>

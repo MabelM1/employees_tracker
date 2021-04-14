@@ -1,20 +1,34 @@
-<h1> Singin </h1>
 
-  <%= form_tag sessions_path do %>
-    <label>User Name:</label><br>
-    <%= text_field_tag :'user[username]' %><br>
-   
-    <label>Password:</label><br>
-    <%= password_field_tag  :'user[password]' %><br>
-   
-    <%= submit_tag "LogIn" %>
-  <% end %>
+<div class="container">
+  <div class="row h-100"
+    <div class="offset-lg-3 col-lg-6 col-12"> 
+      <div class="p-4 p-lg-8 rounded-lg"> </div>
+        <form class="signin-form p-4">
+          <h1 class="display-5 text-primary mb-4"> Sign In </h1>
+            <%= form_tag sessions_path do %>
 
-  <%= session[:employee_id] %>
+              <div class="form-group">
+                <label class="mb-2">User Name:</label><br>
+                <%= text_field_tag :'user[username]',nil,class: 'form-control'%><br>
+              </div>
+
+              <div class="form-group">
+                <label class="mb-2">Password:</label><br>
+                <%= password_field_tag  :'user[password]',nil,class: 'form-control' %><br>
+              </div>
+              <%= submit_tag "Sign In",class: 'btn btn-primary mb-4' %>
+
+            <%= link_to 'Log in with Facebook!', '/auth/facebook',class:'link-secondary login-link mb-2' %>
+            <%= link_to 'Dont have an account? Sign up here', '/users/new', class:'link-success signup-link'  %>
+            <% end %>
+
+            <%= session[:employee_id] %>
 
 
-  <%= link_to('Log in with Facebook!', '/auth/facebook') %>
-
-  <h3><%= flash[:error] %></h3>
-  <p> <%= flash[:message] %></p>
-
+            <h3><%= flash[:error] %></h3>
+            <p> <%= flash[:message] %></p>
+        </form>
+     
+    </div>
+  </div>
+</div>
